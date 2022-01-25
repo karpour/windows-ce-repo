@@ -98,7 +98,8 @@ export const WindowsCEArchLongNames: { [key in WinCEArchitecture]: string } = {
     "SH4": "Hitachi SuperH 4",
     "ARM": "ARM",
     "XSCALE": "Intel XScale",
-    "MIPS": "MIPS R4000"
+    "MIPS": "MIPS R4000",
+    "THUMB": "ARM Thumb"
 };
 
 
