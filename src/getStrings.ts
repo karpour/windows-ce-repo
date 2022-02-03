@@ -8,7 +8,7 @@ export default function getStrings(filePath: string): Promise<string[]> {
             reject(`File "${filePath}" does not exist`);
         const wcepeinfo = spawn('strings', ['-el', '-Tpe-x86-64', '-d', filePath]);
         var output = "";
-        wcepeinfo.stdout.setEncoding("ascii");
+        wcepeinfo.stdout.setEncoding("utf-8");
 
         wcepeinfo.stdout.on('data', function (data) {
             output += data.toString();
@@ -18,7 +18,7 @@ export default function getStrings(filePath: string): Promise<string[]> {
             if (code) {
                 reject(output);
             } else {
-                let strings: string[] = output.split('\n');
+                let strings: string[] = output.split('\n').map(item => item.trim());
                 resolve(strings);
             }
         });

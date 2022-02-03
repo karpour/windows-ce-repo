@@ -10,8 +10,8 @@ export default function getWinCeCabInfo(filePath: string): Promise<WinCeCab000He
         //console.log(['wcecabinfo', '-j', filePath].join(' '));
         var wceData = "";
         var errData = "";
-        wcepeinfo.stdout.setEncoding("ascii");
-        wcepeinfo.stderr.setEncoding("ascii");
+        wcepeinfo.stdout.setEncoding("utf-8");
+        wcepeinfo.stderr.setEncoding("utf-8");
 
         wcepeinfo.stderr.on('data', function (data) {
             errData += data.toString();

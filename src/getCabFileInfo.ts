@@ -19,7 +19,7 @@ export type CabFileInfo = {
         peInfo: WinCEPEInfo;
         strings: string[];
     }[];
-    cabFiles: { [key: number]: string; };
+    files: { [key: number]: string; };
 };
 
 
@@ -36,10 +36,10 @@ export default async function getCabFileInfo(filepath: string): Promise<CabFileI
     const cabInfo: CabFileInfo = {
         cabHeader: cab000Info,
         peInfos: [],
-        cabFiles: {},
+        files: {},
     };
     cabFiles.forEach(file => {
-        cabInfo.cabFiles[getFileNumber(file)] = file;
+        cabInfo.files[getFileNumber(file)] = file;
     });
 
     for (let file of cabFiles) {

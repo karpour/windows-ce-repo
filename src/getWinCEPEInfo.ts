@@ -9,8 +9,8 @@ export default function getWinCePEInfo(filePath: string): Promise<WinCEPEInfo> {
         let cmd = `wcepeinfo -j ${filePath}`;
         var wceData = "";
         var errData = "";
-        wcepeinfo.stdout.setEncoding("ascii");
-        wcepeinfo.stderr.setEncoding("ascii");
+        wcepeinfo.stdout.setEncoding("utf-8");
+        wcepeinfo.stderr.setEncoding("utf-8");
 
         wcepeinfo.stdout.on('data', function (data) {
             wceData += data.toString();
@@ -29,7 +29,7 @@ export default function getWinCePEInfo(filePath: string): Promise<WinCEPEInfo> {
                     let info: WinCEPEInfo = JSON.parse(wceData);
                     resolve(info);
                 } catch (e: any) {
-                    console.error(`Failed to parse wcepeinfo JSON`);
+                    console.error(`Failed to parse wcepeinfo JSON for file ${filePath}`);
                     console.error(e);
                     console.error(`stdout: \n${wceData}`);
                     console.error(`stderr: \n${errData}`);
