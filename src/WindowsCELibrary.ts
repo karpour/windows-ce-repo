@@ -1,15 +1,12 @@
 import fs from "fs";
 import path from "path";
 import util from "util";
-import { WinCEArchitecture, WinCEArchitectures } from "./types/WinCEArchitecture";
-import { WinCECoreVersion } from "./types/WinCECoreVersion";
-import { WindowsCECoreVersionNumbers } from "./types/WinCEPEInfo";
+import { WindowsCEArchitecture, WindowsCEArchitectures } from "./types/WindowsCEArchitecture";
+import { WindowsCECoreVersion, WindowsCECoreVersions } from "./types/WindowsCECoreVersion";
+import { DeviceTypeMap, WindowsCEDeviceType, WindowsCEDeviceTypeExtended} from "./types/WindowsCEDeviceType";
 import {
-    DeviceTypeMap,
     META_JSON_NAME,
     TitleScreenshot,
-    WindowsCEDeviceType,
-    WindowsCEDeviceTypeExtended,
     WindowsCETitle,
     WindowsCETitleFiles,
     WindowsCETitleFilesType,
@@ -23,16 +20,16 @@ const RegExp_Version_Directory = /v\d+\.\d+.*/;
 
 const RegExp_CE_Version_Directory = /CE(\d\.\d\d?)(.*)/;
 
-const arches: { [key: string]: WinCEArchitecture; } = {};
-for (let arch of WinCEArchitectures) {
-    arches[arch.toUpperCase()] = arch as WinCEArchitecture;
+const arches: { [key: string]: WindowsCEArchitecture; } = {};
+for (let arch of WindowsCEArchitectures) {
+    arches[arch.toUpperCase()] = arch as WindowsCEArchitecture;
 }
 
 //console.log(arches);
 
 
 export default class WindowsCELibrary {
-    private static validArchStringsUpperCase: string[] = WinCEArchitectures.map(arch => arch.toUpperCase());
+    private static validArchStringsUpperCase: string[] = WindowsCEArchitectures.map(arch => arch.toUpperCase());
 
     static createEmptyTitleMeta(): WindowsCETitleMeta {
         return {
@@ -159,8 +156,8 @@ export default class WindowsCELibrary {
             }
 
             else if (regExpResult = RegExp_CE_Version_Directory.exec(fileName)) {
-                let ceVersion = regExpResult[1] as WinCECoreVersion;
-                ceVersion = ceVersion.replace("00", "0") as WinCECoreVersion;
+                let ceVersion = regExpResult[1] as WindowsCECoreVersion;
+                ceVersion = ceVersion.replace("00", "0") as WindowsCECoreVersion;
                 if (!WindowsCELibrary.isValidCEVersion(ceVersion)) throw new Error(`Invalid Windows CE version "${fileName}"`);
 
                 if (ceVersion == "1.0" || ceVersion == "1.01" || ceVersion == "2.0" || ceVersion == "4.0" || ceVersion == "4.10") {
@@ -201,22 +198,22 @@ export default class WindowsCELibrary {
     }
 
     static isValidCEVersion(version: string) {
-        return WindowsCECoreVersionNumbers.includes(version as WinCECoreVersion);
+        return WindowsCECoreVersions.includes(version as WindowsCECoreVersion);
     }
 
-    static getAllTitleFiles(directoryPath: string, ceVersion: WinCECoreVersion): WindowsCETitleFiles[] {
+    static getAllTitleFiles(directoryPath: string, ceVersion: WindowsCECoreVersion): WindowsCETitleFiles[] {
         //console.log(`  Getting all title files for path ${directoryPath}`);
-        let filesList = fs.readdirSync(directoryPath).filter(tpath=>fs.lstatSync(path.join(directoryPath,tpath)).isDirectory());
+        let filesList = fs.readdirSync(directoryPath).filter(tpath => fs.lstatSync(path.join(directoryPath, tpath)).isDirectory());
         return filesList.map(fileName => WindowsCELibrary.getTitleFiles(path.join(directoryPath, fileName), ceVersion));
     }
 
-    static getTitleFiles(directoryPath: string, ceVersion: WinCECoreVersion): WindowsCETitleFiles {
+    static getTitleFiles(directoryPath: string, ceVersion: WindowsCECoreVersion): WindowsCETitleFiles {
         let dirName = path.basename(directoryPath);
         let parts = dirName.split('_');
         let type: WindowsCETitleFilesType = "setup";
         let isSetup = false;
 
-        let architectures: WinCEArchitecture[] = [];
+        let architectures: WindowsCEArchitecture[] = [];
         for (let part of parts) {
             let arch = undefined;
             //console.log(`Checking part ${part}`);
@@ -249,7 +246,7 @@ export default class WindowsCELibrary {
         return titleFiles;
     }
 
-    static getArch(arch: string): WinCEArchitecture | undefined {
+    static getArch(arch: string): WindowsCEArchitecture | undefined {
         return arches[arch.toUpperCase()];
     }
 

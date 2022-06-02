@@ -1,4 +1,4 @@
-import { WinCEArchitecture } from "./WinCEArchitecture";
+import { WindowsCEArchitecture } from "./WindowsCEArchitecture";
 
 export const UNSUPPORTED_DEVICE_TYPES = ["PALM-SIZE PC", "HPC", "PALM PC", "PALM PC2", "POCKETPC", "JUPITER"] as const;
 export type UnsupportedDevice = typeof UNSUPPORTED_DEVICE_TYPES[number] | string;
@@ -71,7 +71,7 @@ export const DIRECTORY_MAPPINGS_PPC: WindowsCeCab000DirectoryMappings = {
 export type WinCeCab000Header = {
     appName: string;
     provider: string;
-    architecture: WinCEArchitecture | null;
+    architecture: WindowsCEArchitecture | null;
     unsupported?: UnsupportedDevice[];
 
     minCeVersion?: {

@@ -9,7 +9,7 @@ const TMP_DIR = os.tmpdir();
 
 const RegExp_Directory_Version = /^(.+)\sv?(\d+\.\d+\w*)$/;
 
-export default abstract class WinCEFileSorter {
+export default abstract class WindowsCEFileSorter {
     public static processDirectory(directoryPath: string) {
         let name:string = path.basename(directoryPath);
         let version:string|undefined;

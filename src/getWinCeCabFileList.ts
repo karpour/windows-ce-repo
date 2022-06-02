@@ -1,4 +1,4 @@
-import { WinCEPEInfo } from "./types/WinCEPEInfo";
+import { WindowsCEPEInfo } from "./types/WindowsCEPEInfo";
 import { spawn } from "child_process";
 import fs from "fs";
 
@@ -19,7 +19,7 @@ export default function getWinCeCabFileList(filePath: string) {
             if (code) {
                 reject(wceData);
             }
-            let info: WinCEPEInfo = JSON.parse(wceData);
+            let info: WindowsCEPEInfo = JSON.parse(wceData);
             resolve(info);
         });
     });

@@ -1,7 +1,7 @@
 import fs from "fs";
 import WindowsCELibrary from "./WindowsCELibrary";
 import path from "path";
-import WinCEFileSorter from "./WinCEFileSorter";
+import WindowsCEFileSorter from "./WindowsCEFileSorter";
 
 function parseFolder(directory: string, dirFunction: (dir: string) => any) {
     if (!fs.existsSync(directory)) throw new Error(`Directory "${directory}" does not exist`);
@@ -16,4 +16,4 @@ function parseFolder(directory: string, dirFunction: (dir: string) => any) {
 }
 
 //parseFolder("/mnt/c/Users/Thomas/Desktop/CE1 sorted", WindowsCELibrary.getTitle);
-parseFolder("/mnt/c/Users/Thomas/Desktop/CE Stuff/Unsorted software", WinCEFileSorter.processDirectory);
+parseFolder("/mnt/c/Users/Thomas/Desktop/CE Stuff/Unsorted software", WindowsCEFileSorter.processDirectory);

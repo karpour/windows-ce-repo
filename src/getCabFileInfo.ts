@@ -6,7 +6,7 @@ import getStrings from "./getStrings";
 import getWinCeCabInfo from "./getWinCeCabInfo";
 import extractCab from "./extractCab";
 import { WinCeCab000Header } from "./types/WinCeCab000Info";
-import { WinCEPEInfo } from "./types/WinCEPEInfo";
+import { WindowsCEPEInfo } from "./types/WindowsCEPEInfo";
 
 export function getFileNumber(file: string) {
     return parseInt(path.extname(file).replace(".", ""));
@@ -16,7 +16,7 @@ export type CabFileInfo = {
     cabHeader: WinCeCab000Header;
     peInfos: {
         file: string;
-        peInfo: WinCEPEInfo;
+        peInfo: WindowsCEPEInfo;
         strings: string[];
     }[];
     files: { [key: number]: string; };

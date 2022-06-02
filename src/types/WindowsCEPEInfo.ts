@@ -1,5 +1,4 @@
-import { WindowsCECoreVersion } from "./WindowsCECoreVersion";
-
+import { WindowsCECoreVersion } from './WindowsCECoreVersion';
 
 export const MachineNames = [
   "UNKNOWN",
@@ -40,7 +39,6 @@ export const CEMachineNames = [
 ] as const;
 
 export type CEMachineName = typeof CEMachineNames[number];
-
 
 export type WindowsCEPEInfo = {
   /** True if subsystem is 9 (Windows CE GUI) */

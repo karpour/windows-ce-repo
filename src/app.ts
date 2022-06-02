@@ -1,4 +1,4 @@
-import { WinCEPEInfo } from "./types/WinCEPEInfo";
+import { WindowsCEPEInfo } from "./types/WindowsCEPEInfo";
 import path from "path";
 import { WinCeCab000Header } from "./types/WinCeCab000Info";
 import inspect from "./inspect";

@@ -1,8 +1,8 @@
-import { WinCEPEInfo } from "./types/WinCEPEInfo";
+import { WindowsCEPEInfo } from "./types/WindowsCEPEInfo";
 import { spawn } from "child_process";
 import fs from "fs";
 
-export default function getWinCePEInfo(filePath: string): Promise<WinCEPEInfo> {
+export default function getWinCePEInfo(filePath: string): Promise<WindowsCEPEInfo> {
     return new Promise((resolve, reject) => {
         if (!fs.existsSync(filePath)) reject(`File "${filePath}" does not exist`);
         const wcepeinfo = spawn('wcepeinfo', ['-j', filePath]);
@@ -26,7 +26,7 @@ export default function getWinCePEInfo(filePath: string): Promise<WinCEPEInfo> {
                 reject(wceData);
             } else {
                 try {
-                    let info: WinCEPEInfo = JSON.parse(wceData);
+                    let info: WindowsCEPEInfo = JSON.parse(wceData);
                     resolve(info);
                 } catch (e: any) {
                     console.error(`Failed to parse wcepeinfo JSON for file ${filePath}`);

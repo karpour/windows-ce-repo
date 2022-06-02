@@ -1,7 +1,7 @@
-import { WinCECoreVersion } from "./types/WinCECoreVersion";
+import { WindowsCECoreVersion } from "./WindowsCECoreVersion";
 
 export type WindowsCEVersionInfo = {
-    //codeName: string;
+    codeName?: string;
     name: string;
     releaseDate: string,
     lifecycleStartDate?: string,
@@ -9,7 +9,7 @@ export type WindowsCEVersionInfo = {
     extendedSupportEndDate?: string;
 };
 
-export const WindowsCECoreReleases: { [key in WinCECoreVersion]: WindowsCEVersionInfo; } = {
+export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVersionInfo; } = {
     "1.0": {
         name: "Windows CE 1.0",
         releaseDate: "1996-11-16",
@@ -59,22 +59,29 @@ export const WindowsCECoreReleases: { [key in WinCECoreVersion]: WindowsCEVersio
         name: "Windows CE .NET 4.0",
         releaseDate: "2002-01-07",
         lifecycleStartDate: "2002-4-1",
-        mainstreamSupportEndDate: "2007-07-10 ",
+        mainstreamSupportEndDate: "2007-07-10",
         extendedSupportEndDate: "2012-7-10",
     },
     "4.10": {
         name: "Windows CE .NET 4.1",
         releaseDate: "2002-06-01",
         lifecycleStartDate: "2002-10-29",
-        mainstreamSupportEndDate: "2008-01-8",
-        extendedSupportEndDate: "2013-01-8",
+        mainstreamSupportEndDate: "2008-01-08",
+        extendedSupportEndDate: "2013-01-08",
     },
     "4.20": {
         name: "Windows CE .NET 4.2",
         releaseDate: "2003-04-23",
-        lifecycleStartDate: "2003-06-1",
-        mainstreamSupportEndDate: "2008-07-8",
-        extendedSupportEndDate: "2013-07-9",
+        lifecycleStartDate: "2003-06-01",
+        mainstreamSupportEndDate: "2008-07-08",
+        extendedSupportEndDate: "2013-07-09",
+    },
+    "4.21": {
+        name: "Windows Mobile 2003 Second Edition",
+        releaseDate: "2003-06-23",
+        lifecycleStartDate: "2004-05-31",
+        mainstreamSupportEndDate: "2000-07-14",
+        extendedSupportEndDate: "2014-07-08",
     },
     "5.0": {
         name: "Windows CE 5.0",
@@ -82,6 +89,19 @@ export const WindowsCECoreReleases: { [key in WinCECoreVersion]: WindowsCEVersio
         lifecycleStartDate: "2004-08-31",
         mainstreamSupportEndDate: "2009-10-13",
         extendedSupportEndDate: "2014-10-14",
+    },
+    "5.01": {
+        name: "Windows CE 5.01",
+        releaseDate: "2005-05-09",
+        lifecycleStartDate: "2005-07-31",
+        mainstreamSupportEndDate: "2010-10-12",
+        extendedSupportEndDate: "2015-10-13"
+    },
+    "5.02": {
+        name: "Windows CE 5.02",
+        releaseDate: "2007-02-12",
+        lifecycleStartDate: "2007-05-12",
+        mainstreamSupportEndDate: "2013-01-08"
     },
     "6.0": {
         name: "Windows Embedded CE 6.0",
