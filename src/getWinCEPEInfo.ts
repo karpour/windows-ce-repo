@@ -6,7 +6,6 @@ export default function getWinCePEInfo(filePath: string): Promise<WindowsCEPEInf
     return new Promise((resolve, reject) => {
         if (!fs.existsSync(filePath)) reject(`File "${filePath}" does not exist`);
         const wcepeinfo = spawn('wcepeinfo', ['-j', filePath]);
-        let cmd = `wcepeinfo -j ${filePath}`;
         var wceData = "";
         var errData = "";
         wcepeinfo.stdout.setEncoding("utf-8");

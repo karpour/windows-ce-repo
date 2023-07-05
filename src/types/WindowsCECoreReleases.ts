@@ -12,6 +12,7 @@ export type WindowsCEVersionInfo = {
 export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVersionInfo; } = {
     "1.0": {
         name: "Windows CE 1.0",
+        codeName: "Pegasus",
         releaseDate: "1996-11-16",
         mainstreamSupportEndDate: "2001-12-31",
     },
@@ -22,6 +23,7 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "2.0": {
         name: "Windows CE 2.0",
+        codeName: "Alder",
         releaseDate: "1997-09-29",
         mainstreamSupportEndDate: "2002-09-30",
     },
@@ -32,17 +34,20 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "2.10": {
         name: "Windows CE 2.10",
+        codeName: "Alder Enhancement Pack",
         releaseDate: "1998-03-01",
         mainstreamSupportEndDate: "2002-09-30",
     },
     "2.11": {
         name: "Windows CE 2.11",
+        codeName: "Birch",
         releaseDate: "1998-07-01",
         lifecycleStartDate: "1998-10-31",
         mainstreamSupportEndDate: "2002-09-30",
     },
     "2.12": {
         name: "Windows CE 2.12",
+        codeName: "Birch Enhancement Pack",
         releaseDate: "1999-09-28",
         lifecycleStartDate: "1999-08-31",
         mainstreamSupportEndDate: "2003-09-30",
@@ -50,6 +55,7 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "3.0": {
         name: "Windows CE 3.0",
+        codeName: "Cedar",
         releaseDate: "2000-06-15",
         lifecycleStartDate: "2000-7-30",
         mainstreamSupportEndDate: "2005-09-30",
@@ -57,6 +63,7 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "4.0": {
         name: "Windows CE .NET 4.0",
+        codeName: "Talisker",
         releaseDate: "2002-01-07",
         lifecycleStartDate: "2002-4-1",
         mainstreamSupportEndDate: "2007-07-10",
@@ -64,6 +71,7 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "4.10": {
         name: "Windows CE .NET 4.1",
+        codeName: "Jameson",
         releaseDate: "2002-06-01",
         lifecycleStartDate: "2002-10-29",
         mainstreamSupportEndDate: "2008-01-08",
@@ -71,6 +79,7 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "4.20": {
         name: "Windows CE .NET 4.2",
+        codeName: "McKendric",
         releaseDate: "2003-04-23",
         lifecycleStartDate: "2003-06-01",
         mainstreamSupportEndDate: "2008-07-08",
@@ -85,6 +94,7 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "5.0": {
         name: "Windows CE 5.0",
+        codeName: "Macallan",
         releaseDate: "2004-07-09",
         lifecycleStartDate: "2004-08-31",
         mainstreamSupportEndDate: "2009-10-13",
@@ -105,6 +115,7 @@ export const WindowsCECoreReleases: { [key in WindowsCECoreVersion]: WindowsCEVe
     },
     "6.0": {
         name: "Windows Embedded CE 6.0",
+        codeName: "Yamazaki",
         releaseDate: "2006-11-01",
         lifecycleStartDate: "2006-11-30 ",
         mainstreamSupportEndDate: "2013-4-9",

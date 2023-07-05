@@ -31,6 +31,7 @@ export const WindowsCeVersionNames = [
     'WM6',
     'WM6.1',
     'WM6.5',
+    'AUTOPC',
 ] as const;
 export type WindowsCeVersionName = typeof WindowsCeVersionNames[number];
 

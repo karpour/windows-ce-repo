@@ -118,7 +118,7 @@ async function main() {
 
 
     for (let f of files) {
-        await processFile(path.join(dir, f));
+        await getRarFileInfo(path.join(dir, f));
     }
 }
 
@@ -141,7 +141,7 @@ export type RarFileInfo = {
     };
 };
 
-function parseRarFileName(name: string) {
+export function parseRarFileName(name: string) {
     const rarFileInfo: RarFileInfo = {
         //regged: false,
         //cracked: false,
@@ -231,7 +231,7 @@ function parseRarFileName(name: string) {
 
 
 
-async function processFile(filepath: string) {
+export async function getRarFileInfo(filepath: string) {
     let fileName = path.basename(filepath, ".rar");
     let fileNameFull = fileName;
 
@@ -252,7 +252,7 @@ async function processFile(filepath: string) {
             fileNameFull = rarDirs[0];
         }
         //console.log(fileNameFull);
-        console.log(parseRarFileName(fileNameFull).name);
+        return parseRarFileName(fileNameFull);
     } catch (err: any) {
         //console.log(err);
     }
@@ -260,4 +260,4 @@ async function processFile(filepath: string) {
 
 
 
-main();
+//main();

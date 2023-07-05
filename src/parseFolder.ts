@@ -1,7 +1,7 @@
 import fs from "fs";
 import WindowsCELibrary from "./WindowsCELibrary";
 import path from "path";
-import WindowsCEFileSorter from "./WindowsCEFileSorter";
+import WindowsCEFileSorter from "./WinCEFileSorter";
 
 function parseFolder(directory: string, dirFunction: (dir: string) => any) {
     if (!fs.existsSync(directory)) throw new Error(`Directory "${directory}" does not exist`);
