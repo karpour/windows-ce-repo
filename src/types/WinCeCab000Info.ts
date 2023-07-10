@@ -1,6 +1,6 @@
 import { WindowsCEArchitecture } from "./WindowsCEArchitecture";
 
-export const UNSUPPORTED_DEVICE_TYPES = ["PALM-SIZE PC", "HPC", "PALM PC", "PALM PC2", "POCKETPC", "JUPITER"] as const;
+export const UNSUPPORTED_DEVICE_TYPES = ["PALM-SIZE PC", "HPC", "PALM PC", "PALM PC2", "POCKETPC", "JUPITER", "SMARTPHONE"] as const;
 export type UnsupportedDevice = typeof UNSUPPORTED_DEVICE_TYPES[number] | string;
 
 export const DIRECTORY_VARIABLES = ["%CE1%", "%CE2%", "%CE3%", "%CE4%", "%CE5%", "%CE6%", "%CE7%", "%CE8%", "%CE9%", "%CE10%", "%CE11%", "%CE12%", "%CE13%", "%CE14%", "%CE15%", "%CE16%", "%CE17%"] as const;

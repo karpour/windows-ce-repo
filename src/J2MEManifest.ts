@@ -127,10 +127,10 @@ type MidletN = `MIDlet-${number}`;
 type MidletPushN = `MIDlet-Push-${number}`;
 
 const J2MEConfigurations = ["CLDC-1.0", "CLDC-1.1"] as const;
-type J2MEConfiguration = keyof typeof J2MEConfigurations[number];
+type J2MEConfiguration = typeof J2MEConfigurations[number];
 
 const MicroEditionProfiles = ["MIDP-1.0", "MIDP-2.0", "MIDP-3.0"] as const;
-type MicroEditionProfile = keyof typeof MicroEditionProfiles[number];
+type MicroEditionProfile = typeof MicroEditionProfiles[number];
 
 export type J2MEJadFileManifest = J2MEJarFileManifest & {
     /** The JAR file size in bytes */

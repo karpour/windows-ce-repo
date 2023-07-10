@@ -25,6 +25,8 @@ export type TitleScreenshot = {
     version?: string;
 };
 
+
+// TODO trial
 export type WindowsCETitleMeta = {
     title: string,
     titleLong: string,

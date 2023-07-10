@@ -1,4 +1,4 @@
-import Seven from 'node-7z';
+import { extractArchive } from './extractArchive';
 
 async function extractExeActiveSync(filePath: string, dir: string) {
     // Spin up vm with snapshot
@@ -15,21 +15,9 @@ async function extractExeActiveSync(filePath: string, dir: string) {
 
 export async function extractExe(filePath: string, dir: string) {
     try {
-        await sevenZipExtract(filePath, dir);
+        await extractArchive(filePath, dir);
     } catch (err: any) {
         console.log(err);
     }
 }
 
-export function sevenZipExtract(filePath: string, dir: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-        // myStream is a Readable stream
-        const myStream = Seven.extractFull(filePath, dir);
-
-        myStream.on('end', function () {
-            resolve();
-        });
-
-        myStream.on('error', (err) => reject(err));
-    });
-}
