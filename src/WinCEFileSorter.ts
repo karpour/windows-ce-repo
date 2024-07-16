@@ -22,9 +22,5 @@ export default abstract class WindowsCEFileSorter {
             name = versionRegExp[1];
             version = versionRegExp[2];
         }
-
-
-        
     }
-
 }

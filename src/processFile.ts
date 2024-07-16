@@ -1,14 +1,12 @@
 import path, { basename, extname } from "path";
-import getWinCePEInfo from "./getWinCePEInfo";
 import getWinCeCabInfo from "./getWinCeCabInfo";
-import { existsSync, readdirSync, rename, renameSync } from "fs";
-import getWinCeCabFileList from "./getWinCeCabFileList";
+import { existsSync, readdirSync, renameSync } from "fs";
 import makeTempDir from "./makeTempDir";
 import extractCab from "./extractCab";
 import { extractExe } from "./extractExe";
 import getStrings from "./getStrings";
-import { WindowsCEArchitecture } from "./types/WindowsCEArchitecture";
-import { getRarFileInfo, parseRarFileName } from "./parseRarNames";
+import { parseRarFileName } from "./parseRarNames";
+import getWinCePEInfo from "./getWinCEPEInfo";
 
 type AppInfoPart = {
     source: string,
