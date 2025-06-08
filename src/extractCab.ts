@@ -7,15 +7,15 @@ export default function extractCab(filePath: string, extractDir: string): Promis
             reject(`Directory "${filePath}" does not exist`);
             return;
         }
-        const wcepeinfo = spawn('cabextract', ['-d', extractDir, filePath]);
+        const cabextract = spawn('cabextract', ['-d', extractDir, filePath]);
         var errMessage = "";
-        wcepeinfo.stderr.setEncoding("ascii");
+        cabextract.stderr.setEncoding("ascii");
 
-        wcepeinfo.stderr.on('data', function (data) {
+        cabextract.stderr.on('data', function (data) {
             errMessage += data.toString();
         });
 
-        wcepeinfo.on('close', function (code) {
+        cabextract.on('close', function (code) {
             if (code) {
                 reject(errMessage);
             } else {

@@ -27,7 +27,8 @@ export const MachineNames = [
   "SH5",
   "THUMB",
   "WCEMIPSV2",
-  "ALPHA64"] as const;
+  "ALPHA64"
+] as const;
 
 export type MachineName = typeof MachineNames[number];
 

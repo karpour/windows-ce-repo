@@ -7,8 +7,9 @@ import { extractExe } from "./extractExe";
 import getStrings from "./getStrings";
 import { parseRarFileName } from "./parseRarNames";
 import getWinCePEInfo from "./getWinCEPEInfo";
+import { extractArchive } from "./extractArchive";
 
-type AppInfoPart = {
+export type AppInfoPart = {
     source: string,
     sourceContext?: string,
     version?: string,
@@ -21,6 +22,7 @@ type AppInfoPart = {
     arch?: string[];
     ceVersion?: string;
     strings?: string[],
+    archiveName?: string,
 };
 
 function readDirAbsolute(dirPath: string) {
@@ -47,6 +49,7 @@ export async function processFile(filePath: string): Promise<AppInfoPart[]> {
 }
 
 async function processCab(filePath: string): Promise<AppInfoPart[]> {
+    console.log("Processing CAB");
     const cabInfo = await getWinCeCabInfo(filePath);
 
     const appInfo: AppInfoPart[] = [];
@@ -125,8 +128,17 @@ async function processExe(filePath: string): Promise<AppInfoPart[]> {
 
 async function processArchive(filePath: string): Promise<AppInfoPart[]> {
     const info = await parseRarFileName(basename(filePath, extname(filePath)));
+    const tmpDir = makeTempDir();
+
+    //await extractArchive(filePath, tmpDir);
+
+
+
     console.log(info);
-    return [];
+    return [{
+        source: "processArchive",
+        archiveName: info.name
+    }];
 }
 
 function findUrl(source: string, strings: string[]): AppInfoPart | undefined {
@@ -143,8 +155,8 @@ function findUrl(source: string, strings: string[]): AppInfoPart | undefined {
 }
 
 async function main() {
-    const dir = `/mnt/c/Users/Thomas/Desktop/trash`;
-    let files = readDirAbsolute(dir).filter(f => extname(f).toLowerCase() === '.exe');
+    const dir = process.argv[2];
+    let files = readDirAbsolute(dir); //.filter(f => extname(f).toLowerCase() === '.exe');
     for (let file of files) {
         console.log(file);
         const appInfo = await processFile(file);
@@ -152,4 +164,6 @@ async function main() {
     }
 }
 
-main();
+if (require.main == module) {
+    main();
+}
