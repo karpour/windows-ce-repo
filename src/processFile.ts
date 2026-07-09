@@ -23,6 +23,7 @@ export type AppInfoPart = {
     ceVersion?: string;
     strings?: string[],
     archiveName?: string,
+    cabInfo?: any;
 };
 
 function readDirAbsolute(dirPath: string) {
@@ -50,14 +51,18 @@ export async function processFile(filePath: string): Promise<AppInfoPart[]> {
 
 async function processCab(filePath: string): Promise<AppInfoPart[]> {
     console.log("Processing CAB");
+    const appInfo: AppInfoPart[] = [];
+
+
     const cabInfo = await getWinCeCabInfo(filePath);
 
-    const appInfo: AppInfoPart[] = [];
     appInfo.push({
         source: `CAB File: ${basename(filePath)}`,
         appname: cabInfo.appName,
         developer: cabInfo.provider,
+        cabInfo
     });
+
 
     const tempDir = makeTempDir();
     await extractCab(filePath, tempDir);
@@ -77,9 +82,13 @@ async function processCab(filePath: string): Promise<AppInfoPart[]> {
     const renamedFiles = readDirAbsolute(tempDir);
     console.log(renamedFiles);
 
-    const firstExe = renamedFiles.find(f => extname(f) === ".exe");
+    /*const firstExe = renamedFiles.find(f => extname(f) === ".exe");
     if (firstExe) {
         appInfo.push(...(await processExe(firstExe)));
+    }*/
+
+    for (let peFile of renamedFiles.filter(f => extname(f) === ".exe" || extname(f) === ".dll")) {
+        appInfo.push(...(await processExe(peFile)));
     }
 
     return appInfo;
@@ -130,7 +139,7 @@ async function processArchive(filePath: string): Promise<AppInfoPart[]> {
     const info = await parseRarFileName(basename(filePath, extname(filePath)));
     const tmpDir = makeTempDir();
 
-    //await extractArchive(filePath, tmpDir);
+    await extractArchive(filePath, tmpDir);
 
 
 
@@ -160,7 +169,7 @@ async function main() {
     for (let file of files) {
         console.log(file);
         const appInfo = await processFile(file);
-        console.log(appInfo);
+        console.dir(appInfo, { depth: null });
     }
 }
 

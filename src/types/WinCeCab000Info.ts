@@ -1,13 +1,22 @@
+/**
+ * Types for the JSON output of wcecabinfo 
+ */
+
 import { WindowsCEArchitecture } from "./WindowsCEArchitecture";
 
 export const UNSUPPORTED_DEVICE_TYPES = ["PALM-SIZE PC", "HPC", "PALM PC", "PALM PC2", "POCKETPC", "JUPITER", "SMARTPHONE"] as const;
+/** Unsupported device types includes all possible strings for device types that this CAB can't be installed on */
 export type UnsupportedDevice = typeof UNSUPPORTED_DEVICE_TYPES[number] | string;
 
 export const DIRECTORY_VARIABLES = ["%CE1%", "%CE2%", "%CE3%", "%CE4%", "%CE5%", "%CE6%", "%CE7%", "%CE8%", "%CE9%", "%CE10%", "%CE11%", "%CE12%", "%CE13%", "%CE14%", "%CE15%", "%CE16%", "%CE17%"] as const;
+
+/** Directory expandstrings. These expand to different paths depending on device type. */
 export type WindowsCeCab000DirectoryVariable = typeof DIRECTORY_VARIABLES[number];
+
+/** Type for Mapping between directory type and actual path */
 export type WindowsCeCab000DirectoryMappings = { [key in WindowsCeCab000DirectoryVariable]: string | undefined; };
 
-//First, for a Handheld PC:
+/** Directory mappings for HPC */
 export const DIRECTORY_MAPPINGS_HPC: WindowsCeCab000DirectoryMappings = {
     "%CE1%": "\\Program Files",
     "%CE2%": "\\Windows",
@@ -28,6 +37,7 @@ export const DIRECTORY_MAPPINGS_HPC: WindowsCeCab000DirectoryMappings = {
     "%CE17%": "\\Windows\\Favorites"
 };
 
+/** Directory mappings for PSPC */
 export const DIRECTORY_MAPPINGS_PSPC: WindowsCeCab000DirectoryMappings = {
     "%CE1%": "\\Program Files",
     "%CE2%": "\\Windows",
@@ -48,6 +58,7 @@ export const DIRECTORY_MAPPINGS_PSPC: WindowsCeCab000DirectoryMappings = {
     "%CE17%": "\\Windows\\Start Menu"
 };
 
+/** Directory mappings for PPC */
 export const DIRECTORY_MAPPINGS_PPC: WindowsCeCab000DirectoryMappings = {
     "%CE1%": "\\Program Files",
     "%CE2%": "\\Windows",
@@ -68,12 +79,14 @@ export const DIRECTORY_MAPPINGS_PPC: WindowsCeCab000DirectoryMappings = {
     "%CE17%": "\\Windows\\Start Menu"
 };
 
+/**
+ * Type of the JSON output of wcecabinfo
+ */
 export type WinCeCab000Header = {
     appName: string;
     provider: string;
     architecture: WindowsCEArchitecture | null;
     unsupported?: UnsupportedDevice[];
-
     minCeVersion?: {
         major: number;
         minor: number;
@@ -93,7 +106,9 @@ export type WinCeCab000Header = {
     }[];
 
     files: {
+        /** Numeric id which is the 3-digit extension of the files contained in the CAB */
         id: number;
+        /** Original file name */
         name: string;
         directory: string;
         /** If bit is set, this file is a reference-counting shared file. It is not deleted at uninstall time unless its reference count is 0 */
@@ -134,5 +149,4 @@ export type WinCeCab000Header = {
         linkPath: string;
         targetPath: string;
     }[];
-
 };

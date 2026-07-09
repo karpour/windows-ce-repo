@@ -3,36 +3,37 @@ import { WinCeCab000Header } from "./types/WinCeCab000Info";
 import fs from "fs";
 
 export default function getWinCeCabInfo(filePath: string): Promise<WinCeCab000Header> {
+    console.log(`Getting cab file info for ${filePath}`)
     return new Promise((resolve, reject) => {
         if (!fs.existsSync(filePath))
             reject(`File "${filePath}" does not exist`);
-        const wcepeinfo = spawn('wcecabinfo', ['-j', filePath]);
+        const wcecabinfo = spawn('wcecabinfo', ['-j', filePath]);
         //console.log(['wcecabinfo', '-j', filePath].join(' '));
         var wceData = "";
         var errData = "";
-        wcepeinfo.stdout.setEncoding("utf-8");
-        wcepeinfo.stderr.setEncoding("utf-8");
+        wcecabinfo.stdout.setEncoding("utf-8");
+        wcecabinfo.stderr.setEncoding("utf-8");
 
-        wcepeinfo.stderr.on('data', function (data) {
+        wcecabinfo.stderr.on('data', function (data) {
             errData += data.toString();
         });
-        wcepeinfo.stdout.on('data', function (data) {
+        wcecabinfo.stdout.on('data', function (data) {
             wceData += data.toString();
         });
 
-        wcepeinfo.on('close', function (code) {
+        wcecabinfo.on('close', function (code) {
             if (code) {
                 //console.log(`Code is ${code}`);
                 //console.log(errData);
                 //console.log(wceData);
-                reject(wceData);
+                reject(errData);
             } else {
                 try {
                     let info: WinCeCab000Header = JSON.parse(wceData);
                     resolve(info);
                 } catch (e: any) {
                     console.error("Failed to parse wcecabinfo JSON:\n" + wceData);
-                    reject("Failed to parse JSON:");
+                    reject("Failed to parse JSON");
                 }
             }
         });

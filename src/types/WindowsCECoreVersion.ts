@@ -6,7 +6,7 @@ export const WindowsCeDeviceType = [
     'PPC',
     'PSPC',
     'SMARTPHONE',
-    'AUTO'
+    'AUTOPC'
 ]
 
 export const WindowsCeVersionNames = [
